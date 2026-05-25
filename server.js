@@ -20,3 +20,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 app.use(express.json());
+const userRoutes = require("./routes/userRoutes");
+
+app.use("/api/users", userRoutes);
