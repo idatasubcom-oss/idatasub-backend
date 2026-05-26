@@ -1,29 +1,8 @@
-const User = require("../models/User");
+const express = require("express");
+const router = express.Router();
 
-const registerUser = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+const { registerUser } = require("../controllers/userController");
 
-    const user = new User({
-      name,
-      email,
-      password
-    });
+router.post("/register", registerUser);
 
-    await user.save();
-
-    res.status(201).json({
-      message: "User registered successfully",
-      user
-    });
-
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
-    });
-  }
-};
-
-module.exports = {
-  registerUser
-};
+module.exports = router;
